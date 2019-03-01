@@ -1,2 +1,6 @@
 *.DS_Store
 .DS_Store
+
+# data file is over 100MB, github not allow
+300k.csv
+data.csv
