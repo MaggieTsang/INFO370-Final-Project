@@ -1,24 +1,3 @@
-# Pokemon Go - Vocabulary
-
-## Links
-Data sets
-* [Data set Pokemon Go](https://www.kaggle.com/semioniy/predictemall/home).
-* Pokemon ID to pokemon name [data set](https://www.kaggle.com/abcsds/pokemon#Pokemon.csv).
-
-[Github repo](https://github.com/MaggieTsang/INFO370-Final-Project).
-
-
-
-## Definitions
-
-**[Pokemon go gym](https://bulbapedia.bulbagarden.net/wiki/Gym)** is a place where a Pokemon can workout. Each gym tends to specialize for a special type of Pokemon. 
-
-> the question has arisen as to whether players can make their own Gyms. While players can’t do this instantly, as it would lead to a pretty intense influx of Gyms and upset of the PokeCoin economy, they can submit a request for a new Gym location here. Only businesses can be submitted, but it’s worth a shot if your area is low on Gyms.
-
-> Hopefully you don’t live too far away from your local Gym, but in case you can’t spot one from where you live, go for a quick walk or car trip around your neighborhood. Niantic has been pretty good at placing Gyms relatively close to most populated areas, even if you live in a small town. Just remember to stay safe and aware while you’re out adventuring.
-
-[Pokemon ID](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number) is a unique ID that references a Pokemon.
-
 INFO 370
 Final Resource
 
@@ -40,9 +19,10 @@ Data: Pokemon Go Data
 > We chose to focus on five different American cities for this part of our exploration. These cities included New York City, Los Angeles, Chicago, Denver, and Seattle. We chose NYC, LA, and Chicago based on population (as they are the 3 cities with the highest populations in the US), but chose Seattle and Denver based off personal preference. Since we all live in Seattle, we thought it would be an interesting city to look into. One of the group members previously lived in Denver and thought it would be interesting to compare since Seattle and Denver have similar population sizes.
 
 ## City Comparisons
+All income maps courtesy of [Statistical Atlas](https://statisticalatlas.com/United-States/Overview)
 
 ![New York Comparison](img/ny_comparison.png)
-Comparison between New York City’s Pokemon appearances (mapped using Folium) vs NYC Median Income by Neighborhood (all maps courtesy of [Statistical Atlas](https://statisticalatlas.com/United-States/Overview)).
+Comparison between New York City’s Pokemon appearances (mapped using Folium) vs NYC Median Income by Neighborhood.
 ![Los Angeles Comparison](img/la_comparison.png)
 Comparison between LA’s Pokemon appearances vs LA Median Income by Neighborhood
 ![Chicago Comparison](img/chicago_comparison.png)
@@ -61,24 +41,37 @@ Denver doesn’t seem to have any correlation, and Seattle doesn’t seem to hav
 
 > While income may have a broader effect overall, in the case of these five cities, income did not always correlate with Pokemon appearances.
 
-## Quantitative questions are clearly and concisely explained with thoughtful text and compelling visual
+## Data Prep: Encoding and Splitting
 
-> After we chose our data set, realized that our data had no quantitative variables, and instead had categorical variables. Due to the lack of quantitative variables, we do not have any quantitative questions. However, we were curious whether or not we could predict the Pokemon type To address the issue of our categorical target variables, we use the pandas function pd.get_dummies to encode the different Pokemon types. This process 
+> After we chose our data set, realized that our data had no quantitative variables, and instead only had categorical variables. Due to the lack of quantitative variables, we do not have any quantitative questions. However, we were curious whether or not we could predict how many Pokemon of each type would appear, so we chose Pokemon type to be our target depndent variable.
 
-## A nuanced understanding of the important features of the dataset and topic is demonstrated.
+> To address the issue of our categorical target variables, we needed to encode our variables. To do that, we used the Pandas function get_dummies(). We chose this method because both it and our data frames were managed by the pandas library. Before encoding the data, we dropped certain variables that we did not need, such as name, ID, city, weather icon, and appeared local time and day of week. Afterwards, we looped through the entire dataframe and converted all objects to floats and removed the originals.
 
-> After encoding our data, we used forward feature selection in order to look for features with high coefficients within our dataset. Through this process, we got four variables back: longitude, sunrise, sunset, and population density. However, the process that we used for feature selection is specifically used for numeric dependent values, and our dependent value--Pokemon Type--is categorical. Since the methods didn’t correlate, we did not use any of the suggested features from our process. Instead, we used it as a data exploration step in order to further look into the data.
+> After we finished encoding the data, we split it into our training data and test data. We used an 80/20 split, so that 80% of the data was used to train our model and 20% was used to test its predictions.
+
+## Feature Selection
+
+> After splitting our data, we used forward feature selection in order to look for features with high coefficients within our dataset. Through this process, we got four variables back: longitude, sunrise, sunset, and population density. However, the process that we used for feature selection is specifically used for numeric dependent values, and our dependent value--Pokemon Type--is categorical. Since the methods didn’t correlate, we did not use any of the suggested features from our process. Instead, we used it as a data exploration step in order to further look into the data.
 
 > There are also some possible reasons for these high correlations. While investigating the data, we found that the city labels were often quite inaccurate, with many Seattle data points being labeled as Los Angeles. We noticed this was a difference in latitude, which led us to believe that the creator of the data set must have sorted cities by longitude instead. This places greater precedence on the longitude value, rather than latitude.
 
 > Population density may be an effect because of Pokemon Go’s game mechanics. Developers (and avid players) have always maintained that the more Pokemon Go players in one area, the more Pokemon will spawn. This inclusion of population density would make sense if this is true. Lastly, sunrise and sunset may be times during the day in which more people are active on Pokemon Go. However, this is purely conjecture.
 
+> While we did not go with the features that were returned, we did use it as a jumping off point and decided to look into Pokemon type from there.
 
-## High-level insights (important descriptive information, major trends, notable outliers, etc.) should be prominent in your resource.
+## Modeling
 
-Stuff here 
+> We decided to go with three different models and three different approaches. Of the available methods, we chose to use Decision Trees, K Nearest Neighbors, and SVC Regression. We chose the first two because of what we learned in class, and we chose the latter because it is specifically used for working with categorical data.
+
+> Before creating our models, we used Grid Search in order to find the optimal depth for our Decision Tree and the optimal number of neighbors for our KNN approach. When we ran these grid searches, however, we found that the results were quite unsatisfactory. For Decision Tree, we got a result of a max depth of 1, with an accuracy score of 18.9%. For KNN, we got 9 neighbors with an accuracy score of 21.8%. Since these were abnormally low, we decided to instead go with a depth of 15 for Decision Tree and n = 8 for KNN.
+
+> Finally, we created our models with the above parameters. For Decision Tree and KNN, we used the entirety of our data set. However, for SVC Regression, we were unable to use the whole dataset, and instead used 1% of our data (which is ~3000 rows). We did this because the model took too long to run when using all 300,000 rows, so we opted to create a smaller sample instead.
 
 
-## Methods and results of statistical approaches are clear
+## Visualizations and Conclusions
 
-Stuff here
+> After running our models, we got 3 very different accuracy scores. For Decision Tree, we were surprised to get an accuracy score of 100%. For KNN, we got an accuracy score of 55.8%. And for SVC Regression, we got an accuracy score of 19.4%.
+
+![Accuracy Scores](img/accuracy_scores.png)
+Our 3 different accuracy scores.
+
