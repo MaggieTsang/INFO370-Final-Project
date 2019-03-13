@@ -83,7 +83,7 @@ Our 3 different accuracy scores.
 
 > The next highest accuracy score we got was K Nearest Neighbor at 55.8%. Since we were not as accurate with this model, it actually has some more interesting conclusions.
 
-![KNN Predictions](img/knn_occurrances_vs_preds.PNG)
+![KNN Predictions](img/knn_occurances_vs_preds.PNG)
 
 > As seen in the graph above, this model did better in some places than it did others. KNN grossly over-predicted the number of Normal type Pokemon that would occur. However, this makes sense because of how much more common they are than the rest of the other Pokemon types. Electric and Bug types were the other two that were over-predicted, but not nearly as much. The remaining types were under-predicted, with the model missing a lot of the data. Some types fared better than others--the model got most Psychic, Water, and Ground types correctly. However, it missed practically all of the Dragon and Ghost types, and more than half of Rock, Grass, and Fairy.
 
