@@ -72,6 +72,23 @@ Denver doesn’t seem to have any correlation, and Seattle doesn’t seem to hav
 
 > After running our models, we got 3 very different accuracy scores. For Decision Tree, we were surprised to get an accuracy score of 100%. For KNN, we got an accuracy score of 55.8%. And for SVC Regression, we got an accuracy score of 19.4%.
 
-![Accuracy Scores](img/accuracy_scores.png)
+![Accuracy Scores](img/accuracy_scores.PNG)
 Our 3 different accuracy scores.
 
+> Out of our 3 accuracy scores, Decision Tree was by far the most accurate. In fact, we were quite shocked that we managed to get 100% accuracy. We assume that the high accuracy is attributed to the depth we chose, as well as the sheer amount of data that we provided it. We were a bit concerned with possibly having overfit the data, but since our training data and test data was split, modeling the decision tree and the test results were independent of each other.
+
+![Decision Tree Predictions](img/decision_tree_preds.PNG)
+
+> As seen in the graph above, the orange bar represents the data that was accurately predicted. Since there is no yellow or red in the bar chart, it means our Decision Tree model predicted 100% of the data correctly.
+
+> The next highest accuracy score we got was K Nearest Neighbor at 55.8%. Since we were not as accurate with this model, it actually has some more interesting conclusions.
+
+![KNN Predictions](img/knn_occurrances_vs_preds.PNG)
+
+> As seen in the graph above, this model did better in some places than it did others. KNN grossly over-predicted the number of Normal type Pokemon that would occur. However, this makes sense because of how much more common they are than the rest of the other Pokemon types. Electric and Bug types were the other two that were over-predicted, but not nearly as much. The remaining types were under-predicted, with the model missing a lot of the data. Some types fared better than others--the model got most Psychic, Water, and Ground types correctly. However, it missed practically all of the Dragon and Ghost types, and more than half of Rock, Grass, and Fairy.
+
+> Looking at these severely under-predicted types, however, yields interesting conclusions. Since Pokemon Go, at the time this data was collected, only had the original first generation of Pokemon, there are far fewer Dragon, Ghost, and Fairy types. This is because Dragon types were not as common in the first few iterations of the Pokemon franchise, and Fairy is a type that only came into existence in 2013 (whereas the rest of the franchise has existed since 1998). This could be why there are far fewer of these Pokemon, which also led to less data for the model to use for its predictions.
+
+> Finally, our SVC model had a pretty dismal accuracy score of 19.4%. We attribute that mostly to the fact that we used a sample subset of the data, as opposed to the entirety of the data like we did with the previous two models. This subset was also very small--only 1% of the entire data set. This most likely had a large effect on the model's accuracy, but our inexperience using the SVC Regression model may have also played into it (despite our best efforts).
+
+> Overall, we can conclude that there are far more Normal type Pokemon in Pokemon Go than any others in the game. The second and third largest--Bug and Water--don't even come close. While this data set is fairly dated (in terms of the lifespan of the Pokemon Go app), it is still interesting to see the distribution of types around the globe.
