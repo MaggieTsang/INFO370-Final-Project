@@ -41,15 +41,15 @@ Data: Pokemon Go Data
 
 ## City Comparisons
 
-![alt text](img/ny_comparison.png “New York Comparison”)
+![New York Comparison](img/ny_comparison.png)
 Comparison between New York City’s Pokemon appearances (mapped using Folium) vs NYC Median Income by Neighborhood (all maps courtesy of [Statistical Atlas](https://statisticalatlas.com/United-States/Overview)).
-![alt text](img/la_comparison.png “Los Angeles Comparison”)
+![Los Angeles Comparison](img/la_comparison.png)
 Comparison between LA’s Pokemon appearances vs LA Median Income by Neighborhood
-![alt text](img/chicago_comparison.png “Chicago Comparison”)
+![Chicago Comparison](img/chicago_comparison.png)
 Comparison between Chicago’s Pokemon appearances vs Chicago Median Income by Neighborhood
-![alt text](img/seattle_comparison.png “Seattle Comparison”)
+![Seattle Comparison](img/seattle_comparison.png)
 Comparison between Seattle’s Pokemon appearances vs Seattle Median Income by Neighborhood
-![alt text](img/denver_comparison.png “Denver Comparison”)
+![Denver Comparison](img/denver_comparison.png)
 Comparison between Denver’s Pokemon appearances vs Denver Median Income by Neighborhood
 
 > For all maps, orange dots are Pokemon that appeared during the day, while teal dots are Pokemon that appeared at night.
